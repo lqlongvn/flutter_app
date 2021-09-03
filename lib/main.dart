@@ -14,18 +14,24 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( // Scaffold đang là cha của MyButtonWidget
       body: Center(
-        child: FlatButton(
-          child: Text('show snackbar'),
-          color: Colors.pink,
-          onPressed: () {
-            // xử lý show snackbar khi click
-            final snackBar = SnackBar(content: Text('Không thể truy cập bài viết này vì thấy hay mà không vote'));
-            Scaffold.of(context).showSnackBar(snackBar);
-          },
-        ),
+        child: MyButtonWidget(),
       ),
     );
   }
 }
+class MyButtonWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) { // từ context của MyButtonWidget sẽ tìm được widget Scaffold cha gần nhất
+    return FlatButton(
+      child: Text('show snackbar'),
+      color: Colors.pink,
+      onPressed: () {
+        final snackBar = SnackBar(content: Text('Lỗi không thể truy cập bài viết này vì thấy hay mà không vote'));
+        Scaffold.of(context).showSnackBar(snackBar); // truyền vào context của MyButtonWidget
+      },
+    );
+  }
+}
+
