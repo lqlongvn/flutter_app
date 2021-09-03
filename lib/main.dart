@@ -3,33 +3,28 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hello World Demo Application',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Home page'),
+      home: MyHomePage(),
     );
   }
 }
-class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
 
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(this.title),
-      ),
       body: Center(
-          child:
-          Text(
-            'Hello World',
-          )
+        child: FlatButton(
+          child: Text('show snackbar'),
+          color: Colors.pink,
+          onPressed: () {
+            // xử lý show snackbar khi click
+            final snackBar = SnackBar(content: Text('Không thể truy cập bài viết này vì thấy hay mà không vote'));
+            Scaffold.of(context).showSnackBar(snackBar);
+          },
+        ),
       ),
     );
   }
