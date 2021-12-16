@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+main(){
+  print("Hi Long, Hello World");
+  int myNumber;
+  print(myNumber);
+}
+
+
+// void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
