@@ -2,14 +2,17 @@
 import 'package:flutter/material.dart';
 
 main(){
-  print("App started");
-  new App();
-  print("App finished");
+  var dog = new Dog();
+  dog.talk();
 }
 
-class App{
-  App(){
-    print("Constructing a class");
+class Dog{
+  int legs;
+  Dog(){
+    print("default constructor");
+  }
+  void talk() {
+    print("Gau gau");
   }
 }
 
