@@ -6,23 +6,35 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(title : "Flutter Playground",
         home : Scaffold(
+            appBar : AppBar(
+                title : Text("Flutter Playground!")
+            ),
+            drawer : Drawer(
+                child : Column(
+                    children : [
+                      Text("Item 1"),
+                      Divider(),
+                      Text("Item 2"),
+                      Divider(),
+                      Text("Item 3")
+                    ]
+                )
+            ),
+
             body : Center(
-                child : Card(
-                    child : Column(mainAxisSize: MainAxisSize.min,
-                        children : [
-                          Text("Child1"),
-                          Divider(),
-                          Text("Child2"),
-                          Divider(),
-                          Text("Child3")
-                        ]
-                    )
+                child : Row(
+                    children : [
+                      Text("Child1"),
+                      Text("Child2"),
+                      Text("Child3")
+                    ]
                 )
             )
         )
     );
   }
 }
+
 
 
 
