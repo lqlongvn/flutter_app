@@ -1,32 +1,77 @@
 
 import 'package:flutter/material.dart';
+
 void main() => runApp(MyApp());
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  MyApp({Key key}) : super(key : key);
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home : DefaultTabController(
-            length : 3,
-            child : Scaffold(
-                appBar : AppBar(title : Text("Flutter Playground"),
-                    bottom : TabBar(
-                        tabs : [
-                          Tab(icon : Icon(Icons.announcement)),
-                          Tab(icon : Icon(Icons.cake)),
-                          Tab(icon : Icon(Icons.cloud))
-                        ]
-                    )
-                ),
-                body : TabBarView(
+  _MyApp createState() => _MyApp();
+}
+class LoginData {
+  String username = "";
+  String password = "";
+}
+class _MyApp extends State {
+  LoginData _loginData = new LoginData();
+  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext inContext) {
+    return MaterialApp(home : Scaffold(
+        body : Container(
+            padding : EdgeInsets.all(50.0),
+            child : Form(
+                key : this._formKey,
+                child : Column(
                     children : [
-                      Center(child : Text("Announcements")),
-                      Center(child : Text("Birthdays")),
-                      Center(child : Text("Data"))
+                      TextFormField(
+                          keyboardType :
+                          TextInputType.emailAddress,
+                          validator : (String inValue) {
+                            if (inValue.length == 0) {
+                              return "Please enter username";
+                            }
+                            return null;
+                          },
+                          onSaved: (String inValue) {
+                            this._loginData.username = inValue;
+                          },
+                          decoration : InputDecoration(
+                              hintText : "none@none.com",
+                              labelText : "Username (eMail address)"
+                          )
+                      ),
+                      TextFormField(
+                          obscureText : true,
+                          validator : (String inValue) {
+                            if (inValue.length < 10) {
+                              return "Password must be >=10 in length";
+                            }
+                            return null;
+                          },
+                          onSaved : (String inValue) {
+                            this._loginData.password = inValue;
+                          },
+                          decoration : InputDecoration(
+                              hintText : "Password",
+                              labelText : "Password"
+                          )
+                      ),
+                      RaisedButton(
+                          child : Text("Log In!"),
+                          onPressed : () {
+                            if (_formKey.currentState.validate()) {
+                              _formKey.currentState.save();
+                              print("Username: ${_loginData.username}");
+                              print("Password: ${_loginData.password}");
+                            }
+                          }
+                      )
                     ]
                 )
             )
         )
-    );
+    ));
   }
 }
+
 
