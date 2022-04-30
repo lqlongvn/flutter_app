@@ -2,75 +2,49 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
-class MyApp extends StatefulWidget {
-  MyApp({Key key}) : super(key : key);
+class MyApp extends StatelessWidget {
   @override
-  _MyApp createState() => _MyApp();
-}
-class _MyApp extends State {
-  GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
-  var _checkboxValue = false;
-  var _switchValue = false;
-  var _sliderValue = .3;
-  var _radioValue = 1;
-  @override
-  Widget build(BuildContext inContext) {
-    return MaterialApp(home : Scaffold(
-    body : Container(
-    padding : EdgeInsets.all(50.0),
-    child : Form(
-    key : this._formKey,
-    child : Column(
-    children : [
-    Checkbox(
-    value : _checkboxValue,
-    onChanged : (bool inValue) {
-    setState(() { _checkboxValue = inValue; });
-    }
-    ),
-    Switch(
-    value : _switchValue,
-    onChanged : (bool inValue) {
-    setState(() { _switchValue = inValue; });
-    }
-    ),
-    Slider(
-    min : 0, max : 20,
-    value : _sliderValue,
-    onChanged : (inValue) {
-    setState(() => _sliderValue = inValue);
-    }
-    ),
-    Row(children : [
-    Radio(value : 1, groupValue : _radioValue,
-    onChanged : (int inValue) {
-    setState(() { _radioValue = inValue; });
-    }
-    ),
-    Text("Option 1")
-    ]),
-    Row(children : [
-    Radio(value : 2, groupValue : _radioValue,
-    onChanged : (int inValue) {
-    setState(() { _radioValue = inValue; });
-    }
-    ),
-    Text("Option 2")
-    ]),
-    Row(children : [
-    Radio(value : 3, groupValue : _radioValue,
-    onChanged : (int inValue) {
-    setState(() { _radioValue = inValue; });
-    }
-    ),
-    Text("Option 3")
-    ])
-    ]
-    )
-    )
-    )
-    ));
+  Widget build(BuildContext context) {
+    return MaterialApp(home : Scaffold(body : Home()));
   }
 }
+
+class Home extends StatelessWidget {
+  Future<void> _selectDate(inContext) async {
+    DateTime selectedDate = await showDatePicker(
+        context : inContext,
+        initialDate : DateTime.now(),
+        firstDate : DateTime(2017),
+        lastDate : DateTime(2021)
+    );
+    print(selectedDate);
+  }
+  Future<void> _selectTime(inContext) async {
+    TimeOfDay selectedTime = await showTimePicker(
+      context : inContext,
+      initialTime : TimeOfDay.now(),
+    );
+    print(selectedTime);
+  }
+  @override
+  Widget build(BuildContext inContext) {
+    return Scaffold(
+        body : Column(
+        children : [
+        Container(height : 50),
+    RaisedButton(
+    child : Text("Test DatePicker"),
+    onPressed : () => _selectDate(inContext)
+    ),
+    RaisedButton(
+    child : Text("Test TimePicker"),
+    onPressed : () => _selectTime(inContext)
+    )
+    ]
+    )
+    );
+  }
+}
+
 
 
