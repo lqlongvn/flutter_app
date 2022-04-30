@@ -8,40 +8,43 @@ class MyApp extends StatelessWidget {
     return MaterialApp(home : Scaffold(body : Home()));
   }
 }
-
 class Home extends StatelessWidget {
-  Future<void> _selectDate(inContext) async {
-    DateTime selectedDate = await showDatePicker(
-        context : inContext,
-        initialDate : DateTime.now(),
-        firstDate : DateTime(2017),
-        lastDate : DateTime(2021)
-    );
-    print(selectedDate);
-  }
-  Future<void> _selectTime(inContext) async {
-    TimeOfDay selectedTime = await showTimePicker(
-      context : inContext,
-      initialTime : TimeOfDay.now(),
-    );
-    print(selectedTime);
-  }
   @override
   Widget build(BuildContext inContext) {
+    Future _showIt() async {
+      switch (await showDialog(
+      context : inContext,
+      builder : (BuildContext inContext) {
+      return SimpleDialog(
+          title : Text("What's your favorite food?"),
+      children : [
+      SimpleDialogOption(
+      onPressed : () {
+      Navigator.pop(inContext, "brocolli");
+      },
+      child : Text("Brocolli")
+      ),
+      SimpleDialogOption(
+      onPressed : () {
+      Navigator.pop(inContext, "steak");
+      },
+      child : Text("Steak")
+      )
+      ]
+      );
+      }
+      )) {
+        case "brocolli": print("Brocolli"); break;
+        case "steak": print("Steak"); break;
+      }
+    }
     return Scaffold(
-        body : Column(
-        children : [
-        Container(height : 50),
-    RaisedButton(
-    child : Text("Test DatePicker"),
-    onPressed : () => _selectDate(inContext)
-    ),
-    RaisedButton(
-    child : Text("Test TimePicker"),
-    onPressed : () => _selectTime(inContext)
-    )
-    ]
-    )
+        body : Center(
+            child : RaisedButton(
+                child : Text("Show it"),
+                onPressed : _showIt
+            )
+        )
     );
   }
 }
