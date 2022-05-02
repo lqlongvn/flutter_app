@@ -10,26 +10,20 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext inContext) {
     Future _showIt() {
-      return showDialog(
-          context : inContext,
-          barrierDismissible : false,
-          builder : (BuildContext context) {
-            return AlertDialog(
-                title : Text("We come in peace..."),
-                content : Center(child :
-                Text("...shoot to kill shoot to kill shoot to kill")
-                ),
-                actions : [
-                  FlatButton(
-                      child : Text("Beam me up, Scotty!"),
-                      onPressed : () { Navigator.of(context).pop(); }
-                  )
-                ]
-            );
-          }
+      Scaffold.of(inContext).showSnackBar(
+          SnackBar(
+              backgroundColor : Colors.red,
+              duration : Duration(seconds : 5),
+              content : Text("I like pie!"),
+              action : SnackBarAction(
+                  label : "Chow down",
+                  onPressed: () {
+                    print("Gettin' fat!");
+                  }
+              )
+          )
       );
     }
-
     return Scaffold(
         body : Center(
             child : RaisedButton(
