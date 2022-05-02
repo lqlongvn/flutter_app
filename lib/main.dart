@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
@@ -11,33 +9,27 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext inContext) {
-    Future _showIt() async {
-      switch (await showDialog(
-      context : inContext,
-      builder : (BuildContext inContext) {
-      return SimpleDialog(
-          title : Text("What's your favorite food?"),
-      children : [
-      SimpleDialogOption(
-      onPressed : () {
-      Navigator.pop(inContext, "brocolli");
-      },
-      child : Text("Brocolli")
-      ),
-      SimpleDialogOption(
-      onPressed : () {
-      Navigator.pop(inContext, "steak");
-      },
-      child : Text("Steak")
-      )
-      ]
+    Future _showIt() {
+      return showDialog(
+          context : inContext,
+          barrierDismissible : false,
+          builder : (BuildContext context) {
+            return AlertDialog(
+                title : Text("We come in peace..."),
+                content : Center(child :
+                Text("...shoot to kill shoot to kill shoot to kill")
+                ),
+                actions : [
+                  FlatButton(
+                      child : Text("Beam me up, Scotty!"),
+                      onPressed : () { Navigator.of(context).pop(); }
+                  )
+                ]
+            );
+          }
       );
-      }
-      )) {
-        case "brocolli": print("Brocolli"); break;
-        case "steak": print("Steak"); break;
-      }
     }
+
     return Scaffold(
         body : Center(
             child : RaisedButton(
@@ -48,6 +40,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-
-
