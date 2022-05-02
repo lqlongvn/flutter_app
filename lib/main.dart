@@ -10,20 +10,27 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext inContext) {
     Future _showIt() {
-      Scaffold.of(inContext).showSnackBar(
-          SnackBar(
-              backgroundColor : Colors.red,
-              duration : Duration(seconds : 5),
-              content : Text("I like pie!"),
-              action : SnackBarAction(
-                  label : "Chow down",
-                  onPressed: () {
-                    print("Gettin' fat!");
-                  }
-              )
-          )
+      showModalBottomSheet(context : inContext,
+          builder : (BuildContext inContext) {
+            return new Column(
+                mainAxisSize : MainAxisSize.min,
+                children : [
+                  Text("What's your favorite pet?"),
+                  FlatButton(child : Text("Dog"),
+                    onPressed : () { Navigator.of(inContext).pop(); },
+                  ),
+                  FlatButton(child : Text("Cat"),
+                    onPressed : () { Navigator.of(inContext).pop(); },
+                  ),
+                  FlatButton(child : Text("Ferret"),
+                      onPressed : () { Navigator.of(inContext).pop(); }
+                  )
+                ]
+            );
+          }
       );
     }
+
     return Scaffold(
         body : Center(
             child : RaisedButton(
