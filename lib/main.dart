@@ -5,14 +5,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext inContext) {
     return MaterialApp(home : Scaffold(
-    floatingActionButton : FloatingActionButton(
-    backgroundColor : Colors.red,
-        foregroundColor : Colors.yellow,
-        child : Icon(Icons.add),
-        onPressed : () { print("Ouch! Stop it!"); }
+        body : Center(child :
+        PopupMenuButton(
+        onSelected : (String result) { print(result); },
+        itemBuilder : (BuildContext context) =>
+        <PopupMenuEntry<String>>[
+        PopupMenuItem(
+        value : "copy", child : Text("Copy")
     ),
-        body : Center(child : Text("Click it!"))
+          PopupMenuItem(
+              value : "cut", child : Text("Cut")
+          ),
+          PopupMenuItem(
+              value : "paste", child : Text("Paste")
+          )
+        ]
+        )
+        )
     ));
   }
 }
-
