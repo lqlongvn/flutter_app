@@ -35,18 +35,21 @@ Widget _myListView(BuildContext context) {
           backgroundImage: AssetImage('assets/sun.jpeg'),
         ),
         title: Text('Sun'),
+        trailing: Icon(Icons.keyboard_arrow_right),
       ),
       ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage('assets/moon.jpeg'),
         ),
         title: Text('Moon'),
+        trailing: Icon(Icons.keyboard_arrow_right),
       ),
       ListTile(
         leading: CircleAvatar(
           backgroundImage: AssetImage('assets/stars.jpeg'),
         ),
         title: Text('Star'),
+        trailing: Icon(Icons.keyboard_arrow_right),
       ),
     ],
   );
