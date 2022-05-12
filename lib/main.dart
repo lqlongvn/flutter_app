@@ -1,27 +1,32 @@
 
 import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
+
 class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext inContext) {
-    return MaterialApp(home : Scaffold(
-        body : Center(child :
-        PopupMenuButton(
-        onSelected : (String result) { print(result); },
-        itemBuilder : (BuildContext context) =>
-        <PopupMenuEntry<String>>[
-        PopupMenuItem(
-        value : "copy", child : Text("Copy")
-    ),
-          PopupMenuItem(
-              value : "cut", child : Text("Cut")
-          ),
-          PopupMenuItem(
-              value : "paste", child : Text("Paste")
-          )
-        ]
-        )
-        )
-    ));
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'ListViews',
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+      ),
+      home: Scaffold(
+        appBar: AppBar(title: Text('ListViews')),
+        body: BodyLayout(),
+      ),
+    );
   }
+}
+
+class BodyLayout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return _myListView(context);
+  }
+}
+
+// replace this function with the code in the examples
+Widget _myListView(BuildContext context) {
+  return ListView();
 }
