@@ -28,32 +28,25 @@ class BodyLayout extends StatelessWidget {
 
 // replace this function with the code in the examples
 Widget _myListView(BuildContext context) {
-  return ListView(
-    children: <Widget>[
-      ListTile(
-        leading: CircleAvatar(
-          backgroundImage: AssetImage('assets/sun.jpeg'),
+
+  final titles = ['bike', 'boat', 'bus', 'car',
+    'railway', 'run', 'subway', 'transit', 'walk'];
+
+  final icons = [Icons.directions_bike, Icons.directions_boat,
+    Icons.directions_bus, Icons.directions_car, Icons.directions_railway,
+    Icons.directions_run, Icons.directions_subway, Icons.directions_transit,
+    Icons.directions_walk];
+
+  return ListView.builder(
+    itemCount: titles.length,
+    itemBuilder: (context, index) {
+      return Card( //                           <-- Card widget
+        child: ListTile(
+          leading: Icon(icons[index]),
+          title: Text(titles[index]),
         ),
-        title: Text('Sun'),
-        subtitle: Text('93 million miles away'),
-        trailing: Icon(Icons.keyboard_arrow_right),
-      ),
-      ListTile(
-        leading: CircleAvatar(
-          backgroundImage: AssetImage('assets/moon.jpeg'),
-        ),
-        title: Text('Moon'),
-        subtitle: Text('5 million miles away'),
-        trailing: Icon(Icons.keyboard_arrow_right),
-      ),
-      ListTile(
-        leading: CircleAvatar(
-          backgroundImage: AssetImage('assets/stars.jpeg'),
-        ),
-        title: Text('Star'),
-        trailing: Icon(Icons.keyboard_arrow_right),
-      ),
-    ],
+      );
+    },
   );
 }
 
